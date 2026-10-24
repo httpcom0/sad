@@ -1,0 +1,911 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوابة الوطنية الشاملة للتسجيل في المراسلة | ONEFD الجزائر</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dzGreen: {
+                            DEFAULT: '#006233',
+                            dark: '#004222',
+                            light: '#008545',
+                            soft: '#e6f2ec'
+                        },
+                        dzRed: {
+                            DEFAULT: '#d21034',
+                            dark: '#9e0b25',
+                            light: '#f8d7da'
+                        },
+                        dzGold: {
+                            DEFAULT: '#d4af37',
+                            light: '#f3e5ab',
+                            dark: '#aa8c2c'
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .bg-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#006233 0.5px, transparent 0.5px), radial-gradient(#006233 0.5px, #f8fafc 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0,10px 10px;
+            background-opacity: 0.05;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #004222 0%, #006233 60%, #002b16 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px -5px rgba(0, 98, 51, 0.15);
+        }
+        /* Progress bar fixed top */
+        #readingProgress {
+            transition: width 0.1s ease-out;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #006233;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #004222;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-dzGreen selection:text-white">
+
+    <!-- شريط تقدم القراءة العلوي -->
+    <div class="fixed top-0 left-0 w-full h-1.5 bg-gray-200 z-50">
+        <div id="readingProgress" class="h-full bg-gradient-to-r from-dzRed via-dzGold to-dzGreen w-0"></div>
+    </div>
+
+    <!-- الهيدر والشريط العلوي -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- الشعار -->
+                <a href="#" class="flex items-center space-x-3 space-x-reverse group">
+                    <div class="w-12 h-12 rounded-xl bg-dzGreen flex items-center justify-center text-white shadow-md group-hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-extrabold text-dzGreen leading-tight">دليل المراسلة الجزائر</span>
+                        <span class="block text-xs font-semibold text-dzRed">ONEFD 2026/2027</span>
+                    </div>
+                </a>
+
+                <!-- القائمة الرئيسية - سطح المكتب -->
+                <nav class="hidden md:flex items-center space-x-1 space-x-reverse lg:space-x-6 text-sm font-bold">
+                    <a href="#pathfinder" class="text-gray-700 hover:text-dzGreen transition px-3 py-2 rounded-lg hover:bg-dzGreen-soft">تحديد المسار</a>
+                    <a href="#steps" class="text-gray-700 hover:text-dzGreen transition px-3 py-2 rounded-lg hover:bg-dzGreen-soft">خطوات التسجيل</a>
+                    <a href="#documents" class="text-gray-700 hover:text-dzGreen transition px-3 py-2 rounded-lg hover:bg-dzGreen-soft">الملف المطلوبة</a>
+                    <a href="#calculator" class="text-gray-700 hover:text-dzGreen transition px-3 py-2 rounded-lg hover:bg-dzGreen-soft">حاسبة الرسوم</a>
+                    <a href="#faq" class="text-gray-700 hover:text-dzGreen transition px-3 py-2 rounded-lg hover:bg-dzGreen-soft">الأسئلة الشائعة</a>
+                </nav>
+
+                <!-- أزرار العمل السريع -->
+                <div class="hidden sm:flex items-center space-x-3 space-x-reverse">
+                    <a href="https://inscriptio.onefd.edu.dz/" target="_blank" rel="noopener" class="bg-dzGreen hover:bg-dzGreen-dark text-white px-5 py-2.5 rounded-xl font-bold shadow-md hover:shadow-lg transition flex items-center gap-2 text-sm">
+                        <span>الموقع الرسمي</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- زر القائمة للهواتف -->
+                <div class="flex md:hidden">
+                    <button id="mobileMenuBtn" type="button" class="text-gray-700 hover:text-dzGreen p-2 rounded-lg focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- قائمة الهواتف الذكية -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2 font-bold text-right">
+            <a href="#pathfinder" class="block py-2 text-gray-700 border-b border-gray-100">تحديد المسار والتوجيه</a>
+            <a href="#steps" class="block py-2 text-gray-700 border-b border-gray-100">خطوات التسجيل والتأكيد</a>
+            <a href="#documents" class="block py-2 text-gray-700 border-b border-gray-100">الملف الإداري وقائمة التفقد</a>
+            <a href="#calculator" class="block py-2 text-gray-700 border-b border-gray-100">حاسبة حقوق التسجيل</a>
+            <a href="#faq" class="block py-2 text-gray-700">الأسئلة الشائعة والأجوبة</a>
+            <a href="https://inscriptio.onefd.edu.dz/" target="_blank" class="mt-4 block w-full text-center bg-dzGreen text-white py-3 rounded-xl">الانتقال للموقع الرسمي ONEFD</a>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Section -->
+    <section class="relative hero-gradient text-white overflow-hidden py-16 lg:py-24">
+        <!-- عناصر ديكورية خلفية -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-dzGold opacity-20 blur-3xl"></div>
+        <div class="absolute top-10 -right-24 w-80 h-80 rounded-full bg-dzRed opacity-20 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-dzGold text-sm font-bold border border-white/20">
+                        <i class="fa-solid fa-circle-check text-xs"></i>
+                        <span>الدليل التفاعلي المعتمد لسنة 2026 / 2027</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        دليلك الشامل والشخصي للتسجيل في <span class="text-dzGold">التعليم عن بُعد</span> (ONEFD)
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-200 font-medium max-w-2xl leading-relaxed mx-auto lg:mx-0">
+                        كل ما تحتاجه للالتحاق بالتعليم عن بعد وتجديد تسجيلك: الخطوات التفصيلية، الوثائق المطلوبة، حاسبة التكاليف، والدخول للمنصة التعليمية بسهولة ويسر.
+                    </p>
+
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#pathfinder" class="w-full sm:w-auto bg-dzGold hover:bg-dzGold-dark text-gray-900 font-black px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-3">
+                            <span>ابدأ تحديد مسارك الآن</span>
+                            <i class="fa-solid fa-compass"></i>
+                        </a>
+                        <a href="#steps" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 border border-white/30 text-white font-bold px-8 py-4 rounded-xl transition flex items-center justify-center gap-2 backdrop-blur-sm">
+                            <span>شاهد الخطوات</span>
+                            <i class="fa-solid fa-list-check"></i>
+                        </a>
+                    </div>
+
+                    <!-- إحصائيات سريعة -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-dzGold">100%</span>
+                            <span class="text-xs sm:text-sm text-gray-300">عبر الإنترنت</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-dzGold">27</span>
+                            <span class="text-xs sm:text-sm text-gray-300">مركز جهوي</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-black text-dzGold">معترف بها</span>
+                            <span class="text-xs sm:text-sm text-gray-300">شهادة رسمية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- بطاقة صورة / توضيحية -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-2xl relative">
+                        <div class="bg-white rounded-2xl p-6 text-gray-800 shadow-inner space-y-4">
+                            <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+                                <span class="font-bold text-dzGreen flex items-center gap-2">
+                                    <i class="fa-solid fa-bullhorn text-dzRed"></i>
+                                    مواعيد مهمة لدورة 2026/2027
+                                </span>
+                                <span class="bg-dzGreen-soft text-dzGreen text-xs px-2.5 py-1 rounded-full font-bold">مفتوح الآن</span>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+                                    <div class="text-dzGreen mt-1"><i class="fa-solid fa-calendar-days text-xl"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-gray-900">بداية التسجيلات الأولى</h4>
+                                        <p class="text-xs text-gray-500">بداية من سبتمبر وتستمر إلى غاية نهاية أكتوبر</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+                                    <div class="text-dzRed mt-1"><i class="fa-solid fa-money-bill-wave text-xl"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-gray-900">تسديد الحقوق عن بعد</h4>
+                                        <p class="text-xs text-gray-500">عن طريق بطاقة الذهبية أو الحوالة البريدية</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 p-3 bg-gray-50 rounded-xl">
+                                    <div class="text-dzGold-dark mt-1"><i class="fa-solid fa-award text-xl"></i></div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-gray-900">امتحان إثبات المستوى</h4>
+                                        <p class="text-xs text-gray-500">يجرى عادة في شهر ماي من كل سنة</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="https://inscriptio.onefd.edu.dz/" target="_blank" class="block w-full text-center bg-dzGreen hover:bg-dzGreen-dark text-white font-bold py-3 rounded-xl transition text-sm">
+                                الانقال المباشر لبوابة التسجيل ONEFD
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Interactive Pathfinder (محدد المسار) -->
+    <section id="pathfinder" class="py-16 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-dzGreen font-bold text-sm bg-dzGreen-soft px-4 py-1.5 rounded-full inline-block mb-3">تفاعل معنا</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">حدد فئتك للتعرف على الخطوات المخصصة لك</h2>
+                <p class="mt-3 text-gray-600 font-medium">اختر حالتك التعليمية وسنقوم بتوجيهك إلى الملف المطلوب والخطوات الدقيقة مباشرة.</p>
+            </div>
+
+            <!-- اختيارات المسار -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- خيار 1 -->
+                <button onclick="selectPath('new')" id="btn-path-new" class="path-btn active text-right p-6 rounded-2xl border-2 border-dzGreen bg-dzGreen-soft transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-dzGreen text-white flex items-center justify-center text-xl shadow-md">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <span class="w-6 h-6 rounded-full border-2 border-dzGreen flex items-center justify-center text-dzGreen check-icon">
+                            <i class="fa-solid fa-check text-xs"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-gray-900 mb-2">متعلم جديد أول مرة</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">تتكفل بدخول المراسلة لأول مرة للرفع من مستواك أو الحصول على شهادة جديدة.</p>
+                </button>
+
+                <!-- خيار 2 -->
+                <button onclick="selectPath('renew')" id="btn-path-renew" class="path-btn text-right p-6 rounded-2xl border-2 border-gray-200 hover:border-dzGreen bg-white transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-dzGreen group-hover:text-white text-gray-700 flex items-center justify-center text-xl transition">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <span class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 check-icon">
+                            <i class="fa-solid fa-check text-xs opacity-0"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-gray-900 mb-2">متعلم سابق (إعادة تسجيل)</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">لدرسوا في الديوان سابقاً ويريدون التجديد للعام التالي أو إعادة السنة.</p>
+                </button>
+
+                <!-- خيار 3 -->
+                <button onclick="selectPath('exam')" id="btn-path-exam" class="path-btn text-right p-6 rounded-2xl border-2 border-gray-200 hover:border-dzGreen bg-white transition-all duration-300 relative overflow-hidden group">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gray-100 group-hover:bg-dzGreen group-hover:text-white text-gray-700 flex items-center justify-center text-xl transition">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </div>
+                        <span class="w-6 h-6 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 check-icon">
+                            <i class="fa-solid fa-check text-xs opacity-0"></i>
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-gray-900 mb-2">إثبات المستوى والمستقلين</h3>
+                    <p class="text-sm text-gray-600 leading-relaxed">الراغبون في إجراء امتحان إثبات المستوى للارتقاء المباشر دون متابعة كاملة.</p>
+                </button>
+            </div>
+
+            <!-- نتيجة المسار المختار -->
+            <div id="path-result" class="bg-gray-50 border border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+                <div id="path-new-content" class="path-content space-y-4">
+                    <div class="flex items-center gap-3 text-dzGreen font-bold text-lg border-b border-gray-200 pb-3">
+                        <i class="fa-solid fa-info-circle text-xl"></i>
+                        <span>توجيه المتعلم الجديد:</span>
+                    </div>
+                    <p class="text-gray-700 font-medium">بما أنك متعلم جديد، يلزمك **استخراج الوثيقة المدرسية الأصليّة** من مؤسستك التعليمية السابقة تثبت مستواك المتمدرس فيه، ثم القيام بالتسجيل الأول عبر موقع ONEFD ودفع الحقوق عبر البريد.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">1. الشهادة المدرسية</span>
+                            <span class="text-xs text-gray-500">تكون صالحة ومصادق عليها من مديرية التربية إذا كانت من مؤسسة خاصة.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">2. استمارة التسجيل</span>
+                            <span class="text-xs text-gray-500">تطبع من موقع ONEFD بعد ملء البيانات بدقة.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">3. وصل الدفع</span>
+                            <span class="text-xs text-gray-500">وصل الدفع الإلكتروني عبر BaridiMob أو وصل البريد CCP.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="path-renew-content" class="path-content hidden space-y-4">
+                    <div class="flex items-center gap-3 text-dzGreen font-bold text-lg border-b border-gray-200 pb-3">
+                        <i class="fa-solid fa-rotate text-xl"></i>
+                        <span>توجيه المتعلم السابق (المجدد):</span>
+                    </div>
+                    <p class="text-gray-700 font-medium">عملية اعادة التسجيل أسهل بكثير! لا تحتاج إلى إحضار شهادة مدرسية من جديد، فقط تحتاج إلى **رقم التسجيل السالف (Identifiant)** لتأكيد بياناتك والتجديد للسنة القادمة.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">1. رقم التسجيل السابق</span>
+                            <span class="text-xs text-gray-500">تلاقيه في كشف النقاط أو الاستمارة القديمة.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">2. دفع حقوق التجديد</span>
+                            <span class="text-xs text-gray-500">يتم الدفع عبر الذهبية وتأكيد العملية فورياً.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">3. إعادة تفعيل المعلام</span>
+                            <span class="text-xs text-gray-500">يتحصل المتمدرس مباشرة على اسم المستخدم وكلمة السر المجددة.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="path-exam-content" class="path-content hidden space-y-4">
+                    <div class="flex items-center gap-3 text-dzGreen font-bold text-lg border-b border-gray-200 pb-3">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                        <span>شروط إثبات المستوى والتسجيل المستقل:</span>
+                    </div>
+                    <p class="text-gray-700 font-medium">يمنحك الديوان فرصة اجتياز امتحان إثبات المستوى للارتقاء إلى المستوى الأعلى، أو الحصول على مستوى معترف به يعادلون به مستويات في الوظيف العمومي والمهن.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">الامتحان المصيري</span>
+                            <span class="text-xs text-gray-500">يجرى حضوريًا في مراكز الامتحان المحددة في استدعاء ماي.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">المنصة التعليمية</span>
+                            <span class="text-xs text-gray-500">إلزامية متابعة الفروض الإلكترونية للحصول على نقطة المراقبة المستمرة.</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-200">
+                            <span class="block font-bold text-sm text-gray-900 mb-1">الشهادة الممنوحة</span>
+                            <span class="text-xs text-gray-500">شهادة نجاح رسمية معترف بها لدى المؤسسات والوزارات.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Interactive Step-by-Step Guide (خطوات التسجيل) -->
+    <section id="steps" class="py-16 bg-gray-50 border-t border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-dzRed font-bold text-sm bg-dzRed-light text-dzRed-dark px-4 py-1.5 rounded-full inline-block mb-3">دليل مرحلي</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">خطوات التسجيل بالترتيب التفصيلي</h2>
+                <p class="mt-3 text-gray-600 font-medium">اتبع هذه الخطوات الـ 4 الأساسية لضمان قبول ملفك وتسجيلك بنجاح في الديوان.</p>
+            </div>
+
+            <div class="relative">
+                <!-- خط ربط بين الخطوات في الشاشات الكبيرة -->
+                <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                    
+                    <!-- خطوة 1 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-dzGreen text-white font-black text-2xl flex items-center justify-center mb-6 shadow-md">
+                                1
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">التسجيل الأول عبر الإنترنت</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                أدخل إلى البوابة الإلكترونية لـ ONEFD، اختر المركز الجهوي التابع لولايتك، واملأ الاستمارة ببيانات شخصية ودقيقة مطابق لشهادة الميلاد.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 text-xs font-semibold text-dzGreen flex items-center gap-1">
+                            <i class="fa-solid fa-laptop"></i>
+                            <span>تأكد من اختيار الشعبة بدقة</span>
+                        </div>
+                    </div>
+
+                    <!-- خطوة 2 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-dzGreen text-white font-black text-2xl flex items-center justify-center mb-6 shadow-md">
+                                2
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">دفع حقوق التسجيل</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                يمكنك الدفع الفوري عن طريق البطاقة الذهبية بريدي موب عبر حاسم Payment الإلكتروني، أو طباعة حوالة الدفع CCP والدفع في مكتب البريد.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 text-xs font-semibold text-dzGreen flex items-center gap-1">
+                            <i class="fa-solid fa-credit-card"></i>
+                            <span>احتفظ بصل الدفع جيداً</span>
+                        </div>
+                    </div>
+
+                    <!-- خطوة 3 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-dzGreen text-white font-black text-2xl flex items-center justify-center mb-6 shadow-md">
+                                3
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">تأكيد التسجيل وإرسال الملف</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                بعد 24 إلى 48 ساعة من الدفع، عد للموقع لتأكيد التسجيل وطباعة "استمارة التسجيل المؤكدة" ودفع/إرسال الملف الإداري بالبريد أو للمركز الجهوي.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 text-xs font-semibold text-dzGreen flex items-center gap-1">
+                            <i class="fa-solid fa-file-circle-check"></i>
+                            <span>استخراج وصل التسجيل النهائي</span>
+                        </div>
+                    </div>
+
+                    <!-- خطوة 4 -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200 card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-dzGold-dark text-white font-black text-2xl flex items-center justify-center mb-6 shadow-md">
+                                4
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">تفعيل منصة التعليم (المعلام)</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                تحصل على اسم المستخدم وكلمة السّر للولوج لمنصة "المعلام" الإلكترونية لتحميل الدروس والإجابة على الفروض الإلكترونية التقييمية.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-gray-100 text-xs font-semibold text-dzGold-dark flex items-center gap-1">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                            <span>بداية الدراسة الفعلية</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Dynamic Document Checklist (قائمة تفقد وثائق الملف) -->
+    <section id="documents" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-dzGreen font-bold text-sm bg-dzGreen-soft px-4 py-1.5 rounded-full inline-block">الملف الإداري</span>
+                    <h2 class="text-3xl font-extrabold text-gray-900">قائمة تفقد أوراق وملف التسجيل تفاعلياً</h2>
+                    <p class="text-gray-600 leading-relaxed">
+                        استخدم هذه القائمة التفاعلية لتأكيد تجهيز جميع الأوراق الإدارية. يمكنك وضع علامة على الوثائق التي جهزتها ثم طباعة القائمة للتأكد قبل الذهاب أو إرسال الملف.
+                    </p>
+
+                    <div class="bg-dzGreen-soft p-6 rounded-2xl border border-dzGreen/20">
+                        <div class="flex items-center gap-3 text-dzGreen font-bold mb-2">
+                            <i class="fa-solid fa-lightbulb text-xl"></i>
+                            <span>نصيحة هامة جداً:</span>
+                        </div>
+                        <p class="text-xs text-gray-700 leading-relaxed">
+                            تأكد من أن الشهادة المدرسية تحتوي على الرقم التسلسلي وختم المؤسسة بوضوح، وخالية من أي شطب أو تعديل.
+                        </p>
+                    </div>
+
+                    <button onclick="window.print()" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 rounded-xl shadow transition flex items-center justify-center gap-2 text-sm">
+                        <i class="fa-solid fa-print"></i>
+                        <span>طباعة قائمة الوثائق المكتملة</span>
+                    </button>
+                </div>
+
+                <!-- Checklist App -->
+                <div class="lg:col-span-7 bg-gray-50 p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-sm">
+                    <h3 class="text-lg font-extrabold text-gray-900 mb-6 flex items-center justify-between">
+                        <span>حدد الأوراق المكتملة لدخول الملف:</span>
+                        <span id="checklistCounter" class="text-xs bg-dzGreen text-white px-3 py-1 rounded-full font-bold">0 من 6 جاهرة</span>
+                    </h3>
+
+                    <div class="space-y-4" id="checklistContainer">
+                        
+                        <!-- Item 1 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">استمارة التسجيل الأولي</span>
+                                <span class="text-xs text-gray-500">تطبع من موقع ONEFD بعد ملء البيانات واستخراج رقم الاستمارة.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 2 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">الشهادة المدرسية الأصلية</span>
+                                <span class="text-xs text-gray-500">خاصة بالمتعلمين الجدد (مصحوبة بـ كشف النقاط الأخير).</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 3 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">وصل تسديد حقوق التسجيل</span>
+                                <span class="text-xs text-gray-500">وصل البريد CCP الأصلي أو وصل الدفع الإلكتروني بالذهبية.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 4 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">صور شخصية حديثة (عدد 2)</span>
+                                <span class="text-xs text-gray-500">خلفية فاتحة ويكتب في ظهرها الاسم واللقب.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 5 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">أظرفة بريدية معنونة ومتمورة (عدد 2)</span>
+                                <span class="text-xs text-gray-500">عليها طابع بريدي وعنوان المترشح الكامل لتلقي المراسلات.</span>
+                            </div>
+                        </label>
+
+                        <!-- Item 6 -->
+                        <label class="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-200 cursor-pointer hover:border-dzGreen transition">
+                            <input type="checkbox" onchange="updateChecklist()" class="doc-checkbox w-5 h-5 mt-1 rounded text-dzGreen focus:ring-dzGreen border-gray-300">
+                            <div>
+                                <span class="font-bold text-gray-900 block text-sm">شهادة الميلاد</span>
+                                <span class="text-xs text-gray-500">مستخرجة حديثاً (رقم 12).</span>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Interactive Fee Calculator (حاسبة الرسوم الديناميكية) -->
+    <section id="calculator" class="py-16 bg-pattern border-t border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-gray-200">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <span class="text-dzGold-dark font-bold text-sm bg-dzGold-light/40 px-4 py-1.5 rounded-full inline-block mb-3">أداة حاسبة تقريبية</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">حاسبة حقوق وتكاليف التسجيل (بالدينار DZD)</h2>
+                    <p class="mt-2 text-sm text-gray-600">اختر مستواك التعليمي ونوع المستلزمات التي تريد استلامها لحساب التكلفة الاجمالية.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    
+                    <!-- الخيارات -->
+                    <div class="space-y-5">
+                        
+                        <!-- خيار 1: المستوى التعليمي -->
+                        <div>
+                            <label class="block text-sm font-bold text-gray-800 mb-2">1. المستوى التعليمي:</label>
+                            <select id="calcLevel" onchange="calculateFee()" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-sm font-semibold focus:ring-dzGreen focus:border-dzGreen">
+                                <option value="middle">المرحلة المتوسطة (جميع السنوات 1-4 متوسط)</option>
+                                <option value="secondary">المرحلة الثانوية (جميع السنوات 1-3 ثانوي)</option>
+                            </select>
+                        </div>
+
+                        <!-- خيار 2: الكتب والأقراص المضغوطة -->
+                        <div>
+                            <label class="block text-sm font-bold text-gray-800 mb-2">2. الكتب والوسائط التعليمية:</label>
+                            <select id="calcBooks" onchange="calculateFee()" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-sm font-semibold focus:ring-dzGreen focus:border-dzGreen">
+                                <option value="none">بدون كتب ورقية (الاعتماد الكامل على الأرضية الإلكترونية المعلام - مجاناً)</option>
+                                <option value="cd">مع قرص مضغوط أسبوعي (CD دروس)</option>
+                                <option value="paper">طلب الكتب المطبوعة الورقية الكاملة (+ رسوم الشحن والطباعة)</option>
+                            </select>
+                        </div>
+
+                        <!-- خيار 3: اعادة التسجيل أو جديد -->
+                        <div>
+                            <label class="block text-sm font-bold text-gray-800 mb-2">3. نوع المترشح:</label>
+                            <select id="calcType" onchange="calculateFee()" class="w-full bg-gray-50 border border-gray-300 rounded-xl p-3 text-sm font-semibold focus:ring-dzGreen focus:border-dzGreen">
+                                <option value="new">متعلم جديد (يشمل فتح الملف والتسجيل)</option>
+                                <option value="renew">متعلم سابق (إعادة تسجيل)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- نتيجة الحساب -->
+                    <div class="bg-dzGreen text-white p-6 sm:p-8 rounded-2xl text-center space-y-4 shadow-lg relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black">DZD</div>
+                        <span class="text-xs uppercase tracking-wider text-dzGold font-bold">المبلغ التقريبي الإجمالي للتسديد</span>
+                        
+                        <div class="text-4xl sm:text-5xl font-black text-white py-2" id="totalFeeAmount">
+                            2,500 <span class="text-xl font-medium text-dzGold">د.ج</span>
+                        </div>
+
+                        <p class="text-xs text-gray-200 leading-relaxed border-t border-white/20 pt-4">
+                            ملاحظة: هذا المبلغ تقريبي ويشمل حقوق الدخول والتعليم الإلكتروني عبر الأرضية. قد تضاف مصاريف البريد في حالة الدفع عبر CCP.
+                        </p>
+
+                        <div class="pt-2">
+                            <a href="https://inscriptio.onefd.edu.dz/" target="_blank" class="inline-block bg-dzGold hover:bg-dzGold-dark text-gray-900 font-bold px-6 py-2.5 rounded-xl text-xs transition">
+                                توجه للدفع بالبطاقة الذهبية
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: FAQ Accordion (الأسئلة الشائعة) -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-dzGreen font-bold text-sm bg-dzGreen-soft px-4 py-1.5 rounded-full inline-block mb-3">إجابات وشكوك</span>
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">الأسئلة الأكثر شيوعاً حول المراسلة</h2>
+                <p class="mt-3 text-gray-600 font-medium">كل الإجابات الرسمية التي تحتاجها بخصوص امتحانات المراسلة والشهادة الممنوحة.</p>
+            </div>
+
+            <!-- محرك بحث الأسئلة -->
+            <div class="mb-8 max-w-xl mx-auto">
+                <div class="relative">
+                    <input type="text" id="faqSearch" onkeyup="filterFAQ()" placeholder="ابحث عن سؤالك هنا (مثال: شهادة، امتحان، بريدي موب...)" class="w-full bg-gray-50 border border-gray-300 rounded-2xl py-3.5 pr-11 pl-4 text-sm font-semibold focus:ring-dzGreen focus:border-dzGreen">
+                    <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- قائمة الأسئلة -->
+            <div class="space-y-4" id="faqList">
+                
+                <!-- Q1 -->
+                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition">
+                    <button onclick="toggleFAQ(this)" class="w-full text-right p-5 font-bold text-gray-900 flex items-center justify-between gap-4 focus:outline-none">
+                        <span>هل شهادة التعليم عن بُعد (المراسلة) معترف بها رسمياً في الجزائر؟</span>
+                        <i class="fa-solid fa-chevron-down text-dzGreen transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-200/60 pt-4">
+                        نعم، الشهادة الصادرة عن الديوان الوطني للتعليم والتدريب عن بعد (ONEFD) هي شهادة رسمية معترف بها تماماً من طرف وزارة التربية الوطنية والوظيف العمومي، وتمنحك نفس الحقوق للالتحاق بالمستويات الأعلى أو التوظيف أو اجتياز الامتحانات الرسمية مثل شهادة البكالوريا وشهادة التعليم المتوسط.
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition">
+                    <button onclick="toggleFAQ(this)" class="w-full text-right p-5 font-bold text-gray-900 flex items-center justify-between gap-4 focus:outline-none">
+                        <span>كيف يمكنني الدخول إلى منصة التعليم الإلكتروني (المعلام)؟</span>
+                        <i class="fa-solid fa-chevron-down text-dzGreen transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-200/60 pt-4">
+                        بعد تأكيد التسجيل النهائي، ستتحصل في استمارة التسجيل المؤكدة على (اسم المستخدم) و (كلمة السر). قم بالتوجه لرابط منصة المعلام الخاص بالديوان، ثم أدخل بياناتك لتحصل على كافة الدروس والفروض والت تمارين التفاعلية.
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition">
+                    <button onclick="toggleFAQ(this)" class="w-full text-right p-5 font-bold text-gray-900 flex items-center justify-between gap-4 focus:outline-none">
+                        <span>متى وكيف يقام امتحان إثبات المستوى؟</span>
+                        <i class="fa-solid fa-chevron-down text-dzGreen transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-200/60 pt-4">
+                        يجرى امتحان إثبات المستوى سنوياً في يوم واحد في جميع ولايات الوطن (عادة خلال شهر ماي). يتم سحب الاستدعاءات قبل الموعد بشهر من الموقع الرسمي موضحاً بها مركز الامتحان والمواد المقررة.
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition">
+                    <button onclick="toggleFAQ(this)" class="w-full text-right p-5 font-bold text-gray-900 flex items-center justify-between gap-4 focus:outline-none">
+                        <span>ما هي نقطة المراقبة المستمرة وكيف تؤثر على النجاح؟</span>
+                        <i class="fa-solid fa-chevron-down text-dzGreen transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-200/60 pt-4">
+                        نقطة المراقبة المستمرة تحسب بناءً على إجابتك على الفروض الإلكترونية عبر المنصة ومتابعة الدروس. تدخل هذه النقطة في حساب المعدل السنوي العام للامتحان للرفع من فرص النجاح والارتقاء.
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-item bg-gray-50 rounded-2xl border border-gray-200 overflow-hidden transition">
+                    <button onclick="toggleFAQ(this)" class="w-full text-right p-5 font-bold text-gray-900 flex items-center justify-between gap-4 focus:outline-none">
+                        <span>هل يمكنني التسجيل بالبطاقة الذهبية لشخص آخر؟</span>
+                        <i class="fa-solid fa-chevron-down text-dzGreen transition-transform"></i>
+                    </button>
+                    <div class="faq-answer hidden px-5 pb-5 text-sm text-gray-600 leading-relaxed border-t border-gray-200/60 pt-4">
+                        نعم، يمكنك استغلال البطاقة الذهبية لأي شخص من أقاربك لدفع حقوق التسجيل الخاصة بك، المهم هو إدخال معطيات التسجيل الخاصة بالمترشح نفسه في استمارة التسجيل.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Quick Links & Apps (روابط سريعة ومنصات) -->
+    <section class="py-12 bg-dzGreen text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center text-center md:text-right">
+                
+                <div class="flex items-center justify-center md:justify-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-dzGold text-2xl">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">روابط سريعة ومباشرة</h3>
+                        <p class="text-xs text-gray-200">الوصول المباشر للبوابات الرسمية</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 flex flex-wrap items-center justify-center md:justify-end gap-3">
+                    <a href="https://inscriptio.onefd.edu.dz/" target="_blank" class="bg-white text-dzGreen hover:bg-dzGold hover:text-gray-900 font-bold px-5 py-3 rounded-xl text-xs transition shadow-md flex items-center gap-2">
+                        <span>الموقع الرسمي للتسجيل ONEFD</span>
+                        <i class="fa-solid fa-external-link text-xs"></i>
+                    </a>
+                    <a href="https://scolarite.onefd.edu.dz/" target="_blank" class="bg-white/10 border border-white/20 hover:bg-white/20 text-white font-bold px-5 py-3 rounded-xl text-xs transition flex items-center gap-2">
+                        <span>منصة التعليم المعلام</span>
+                        <i class="fa-solid fa-graduation-cap text-xs"></i>
+                    </a>
+                    <a href="https://baridimob.poste.dz/" target="_blank" class="bg-dzRed hover:bg-dzRed-dark text-white font-bold px-5 py-3 rounded-xl text-xs transition shadow-md flex items-center gap-2">
+                        <span>تطبيق بريدي موب BaridiMob</span>
+                        <i class="fa-solid fa-mobile-screen text-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                <div class="md:col-span-6 text-center md:text-right space-y-2">
+                    <div class="flex items-center justify-center md:justify-start space-x-3 space-x-reverse">
+                        <div class="w-8 h-8 rounded-lg bg-dzGreen text-white flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">دليل التسجيل في المراسلة - الجزائر</span>
+                    </div>
+                    <p class="text-xs text-gray-500 leading-relaxed max-w-md">
+                        موقع إرشادي وتفاعلي يهدف لتسهيل شرح خطوات التسجيل والوثائق المطلوبة للمواطنين والطلبة الراغبين في الالتحاق بالتعليم عن بعد.
+                    </p>
+                </div>
+
+                <div class="md:col-span-6 text-center md:text-left">
+                    <p class="text-xs text-gray-500">
+                        تنويه هام: هذا الموقع هو دليل إرشادي توضيحي مستغل للتسهيل فقط وليس الموقع الرسمي للديوان. للقيام بالتسجيل الفعلي يرجى الذهاب للرابط المعتمد:
+                        <a href="https://inscriptio.onefd.edu.dz/" target="_blank" class="text-dzGold hover:underline block font-bold mt-1">inscriptio.onefd.edu.dz</a>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-gray-800 text-center text-xs text-gray-600 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span>جميع الحقوق محفوظة &copy; 2026 / 2027 - دليل التسجيل في المراسلة الجزائر</span>
+                <span class="text-gray-500">تم التصميم والتطوير بأعلى معايير التفاعلية</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts Script JavaScript التفاعلي -->
+    <script>
+        // 1. شريط تقدم القراءة عند التمرير
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("readingProgress").style.width = scrolled + "%";
+        };
+
+        // 2. قائمة الهاتف
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 3. تحديد المسار والتوجيه
+        function selectPath(pathType) {
+            // إزالة التنشيط عن جميع الأزرار
+            document.querySelectorAll('.path-btn').forEach(btn => {
+                btn.classList.remove('border-dzGreen', 'bg-dzGreen-soft', 'active');
+                btn.classList.add('border-gray-200', 'bg-white');
+                const check = btn.querySelector('.check-icon i');
+                if (check) check.classList.add('opacity-0');
+            });
+
+            // إخفاء جميع المحتويات
+            document.querySelectorAll('.path-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // تنشيط الخيار المختار
+            const selectedBtn = document.getElementById(`btn-path-${pathType}`);
+            if (selectedBtn) {
+                selectedBtn.classList.remove('border-gray-200', 'bg-white');
+                selectedBtn.classList.add('border-dzGreen', 'bg-dzGreen-soft', 'active');
+                const check = selectedBtn.querySelector('.check-icon i');
+                if (check) check.classList.remove('opacity-0');
+            }
+
+            // إظهار المحتوى المناسب
+            const selectedContent = document.getElementById(`path-${pathType}-content`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+        }
+
+        // 4. أداة قائمة تفقد الوثائق (Checklist)
+        function updateChecklist() {
+            const checkboxes = document.querySelectorAll('.doc-checkbox');
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) checkedCount++;
+            });
+
+            const counter = document.getElementById('checklistCounter');
+            counter.innerText = `${checkedCount} من ${checkboxes.length} جاهزة`;
+
+            if (checkedCount === checkboxes.length) {
+                counter.classList.remove('bg-dzGreen');
+                counter.classList.add('bg-dzGold-dark');
+                counter.innerText = 'الملف مكتمل بالكامل! 🎉';
+            } else {
+                counter.classList.remove('bg-dzGold-dark');
+                counter.classList.add('bg-dzGreen');
+            }
+        }
+
+        // 5. حاسبة الرسوم الديناميكية
+        function calculateFee() {
+            const level = document.getElementById('calcLevel').value;
+            const books = document.getElementById('calcBooks').value;
+            const type = document.getElementById('calcType').value;
+
+            let baseFee = 0;
+
+            // تحديد السعر القاعدي حسب المستوى
+            if (level === 'middle') {
+                baseFee = 1800;
+            } else { // secondary
+                baseFee = 2200;
+            }
+
+            // إضافة رسوم الوسائط والكتب
+            if (books === 'cd') {
+                baseFee += 400;
+            } else if (books === 'paper') {
+                baseFee += 1200;
+            }
+
+            // إضافة رسوم ملف التسجيل الأول
+            if (type === 'new') {
+                baseFee += 300;
+            }
+
+            // تحديث العرض الرقمي بأناقة
+            document.getElementById('totalFeeAmount').innerHTML = `${baseFee.toLocaleString()} <span class="text-xl font-medium text-dzGold">د.ج</span>`;
+        }
+
+        // 6. الأسئلة الشائعة Accordion
+        function toggleFAQ(button) {
+            const item = button.parentElement;
+            const answer = item.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                answer.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // 7. تصفية وبحث الأسئلة الشائعة
+        function filterFAQ() {
+            const query = document.getElementById('faqSearch').value.toLowerCase();
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // تشغيل الحاسبة لأول مرة عند التحميل
+        window.onload = function() {
+            calculateFee();
+        };
+    </script>
+</body>
+</html>
+```
